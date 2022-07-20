@@ -6,8 +6,14 @@ dynamodb uses [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/in
 
 You need to use IAM AWS service to setup user permissions and for Key/password etc
 
+Currently Alex has been built using the web interface for Amazon Lex for a few sample intents, but we will use the modeling building API long term as per diagram below.
 
-Current model
+**Current model**
 
 ![flowchart](https://user-images.githubusercontent.com/68733783/180014611-dcfd0fe8-ffc3-47d5-883c-8e0e56b49410.png)
 
+
+
+We have a alex-lex S3 bucket for the project here (Created using boto rather than web interface):
+
+![image](https://user-images.githubusercontent.com/68733783/180030497-e5e13052-bb50-4145-a603-2050172f8f62.png)
