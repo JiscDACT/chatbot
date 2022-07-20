@@ -1,32 +1,11 @@
-# ----------------------------------------------------------------
-# setting up client to use
 # after IAM user setup on AWS
-# ----------------------------------------------------------------
-# Instead of using Python and boto can use AWS CLI which I have downloaded and setup too but
-# its just a command line sort of interface so ideally IDE need to be used I would think to save scripts etc
-# is webstorm used for this sort of thing? Costs money but relatively cheap.
-
 import boto3
-
 #create key/secret for boto3 using IAM
-
 import AWS_keys
-
 #get AWS_KEY_ID and AWS_SECRET from another script so not uploaded to GitHub
-
-
-#This is to use s3 service
-
-s3 = boto3.client('s3', region_name='us-east-1', #no idea what this region should be, this is north virginia so went with that
-                        # Set up AWS credentials
-                        aws_access_key_id=AWS_KEY_ID,
-                         aws_secret_access_key=AWS_SECRET)
-
-buckets = s3.list_buckets()
-
-print(buckets)
-
 # -------------------------------------------------------------------
+# Task design a spreadsheet to use dynamodb to then create jsons
+
 # To use dynamodb, use the below
 # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/dynamodb.html
 # Im using this guide
@@ -82,3 +61,5 @@ table.put_item(
         'utterances': "where can I find out more about what jisc does"
     }
 )
+
+# -------------------------------------------------------------------
