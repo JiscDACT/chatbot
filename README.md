@@ -1,7 +1,8 @@
 # Chatbot Innovation Project
 
 dynamodb uses [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) library to connect to AWS
-You need to use IAM to setup user permissions and for Key/password etc
+
+You need to use IAM AWS service to setup user permissions and for Key/password etc
 
 
 Current model
