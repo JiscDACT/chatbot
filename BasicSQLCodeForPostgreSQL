@@ -1,0 +1,24 @@
+drop table InformationStore;
+--Create table
+CREATE TABLE InformationStore(
+name varchar(255),
+identifier varchar(255),
+description varchar(255),
+utterance1 varchar(255),
+utterance2 varchar(255),
+utterance3 varchar(255),
+utterance4 varchar(255),
+utterance5 varchar(255),
+PRIMARY KEY(identifier)
+);
+
+--Add new column to table
+ALTER TABLE InformationStore ADD parentIntentSignature varchar(255);
+
+--View table contents
+select *
+from InformationStore
+
+--Add data to table
+INSERT INTO InformationStore(name,identifier,utterance1,utterance2,utterance3,utterance4,utterance5)
+       VALUES ('EXPENSES',1234567,'Help users claim expenses','How do i claim back on expenses','where is the link to concur','money back from receipts on concur expenses','more detail expenses')
