@@ -8,8 +8,16 @@ You need to use IAM AWS service to setup user permissions and for Key/password e
 
 Currently Alex has been built using the web interface for Amazon Lex for a few sample intents, but we will use the modeling building API long term as per diagram below.
 
-**Current model**
+## IT/Cloud Architecture
 
+![image](https://user-images.githubusercontent.com/68733783/182109998-4ea37959-4e7a-45af-bd40-57cf8371fc23.png)
+
+
+
+
+
+
+## Further Information
 ![flowchart](https://user-images.githubusercontent.com/68733783/180014611-dcfd0fe8-ffc3-47d5-883c-8e0e56b49410.png)
 
 
