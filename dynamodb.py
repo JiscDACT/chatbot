@@ -6,8 +6,10 @@ os.chdir("C:\\Users\\" + user + '\\OneDrive - Jisc\\GitHub\\chatbot')
 # after IAM user setup on AWS
 import boto3
 #create key/secret for boto3 using IAM
+
 from AWS_keys import *
 #get AWS_KEY_ID and AWS_SECRET from another script so not uploaded to GitHub
+#Ideally needs to be put in as environment variable
 # -------------------------------------------------------------------
 
 # To use dynamodb, use the below
@@ -22,7 +24,7 @@ json_obj = json.loads(f.read())
 
 
 # Get the dynamodb resource.
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1',
+dynamodb = boto3.resource('dynamodb', region_name='eu-west-2', #This is Europe (London)
                           # Set up AWS credentials
                           aws_access_key_id=AWS_KEY_ID,
                           aws_secret_access_key=AWS_SECRET)

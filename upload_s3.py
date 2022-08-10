@@ -19,7 +19,7 @@ import AWS_keys
 
 #This is to use s3 service
 
-s3 = boto3.client('s3', region_name='us-east-1', #no idea what this region should be, this is north virginia so went with that
+s3 = boto3.client('s3', region_name='eu-west-2', #this is Europe (London)
                         # Set up AWS credentials
                         aws_access_key_id=AWS_KEY_ID,
                          aws_secret_access_key=AWS_SECRET)
