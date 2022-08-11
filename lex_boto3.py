@@ -58,7 +58,7 @@ client = boto3.client('lexv2-models', region_name='eu-west-2',
                       aws_access_key_id=AWS_KEY_ID,
                       aws_secret_access_key=AWS_SECRET)
 
-response = client.create_bot(
+created_bot_response = client.create_bot(
     botName='programmatic_alex',
     description='new starter bot',
     roleArn='arn:aws:iam::240624597515:role/aws-service-role/lexv2.amazonaws.com/AWSServiceRoleForLexV2Bots_RUVXLDJJZK',
@@ -73,8 +73,91 @@ response = client.create_bot(
 # ARN you can construct manually but I just got it from webinterface by clicking around!
 
 print(response)
+# -----------------------------------------------------------------------------------------------------------------------
+
+# Create a bot Locale
+response = client.create_bot_locale(
+    botId=created_bot_response['botId'],
+    botVersion='DRAFT',
+    localeId='en_GB',
+    description='Bot locale',
+    nluIntentConfidenceThreshold=0.8
+)
+print(response)
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 
 # -----------------------------------------------------------------------------------------------------------------------
+# Create intent
+
+
+response = client.create_intent(
+    intentName='PYTHON_SETUP2',
+    description='Helps users find out how to setup Python',
+    sampleUtterances=[
+        {
+            'utterance': 'I cant setup PyCharm'
+        },
+        {
+            'utterance': 'I cant setup Python'
+        },
+        {
+            'utterance': 'where can I get help setting up Python'
+        },
+        {
+            'utterance': 'where can I get help using Python'
+        },
+    ],
+    dialogCodeHook={
+        'enabled': False
+    },
+    fulfillmentCodeHook={
+        'enabled': False,
+        'postFulfillmentStatusSpecification': {
+            'successResponse': {
+                'messageGroups': [
+                    {
+                        'message': {
+                            'plainTextMessage': {
+                                'value': 'DACT have Sharepoint pages to offer help and advice'
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+
+    botId=created_bot_response['botId'],
+    botVersion='DRAFT',
+    localeId='en_GB'
+
+)
+
+print(response)
+# -----------------------------------------------------------------------------------------------------------------------
+
+
+# Create a version? Just using DRAFT for now
+
+# You can get the botID out of the previous response
+
+response = client.create_bot_version(
+    botId=created_bot_response['botId'],
+    description='trying out version',
+    botVersionLocaleSpecification={
+        'DRAFT': {
+            'sourceBotVersion': 'version 1'
+        }
+    }
+)
+
+print(response['botId'])
+
+# -----------------------------------------------------------------------------------------------------------------------
+# Create an alias
+
+
+# Resources
+# https://towardsaws.com/getting-started-with-aws-lex-using-a-datafile-and-aws-python-sdk-64517fd751b7
