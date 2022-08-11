@@ -74,8 +74,9 @@ created_bot_response = client.create_bot(
 
 print(response)
 # -----------------------------------------------------------------------------------------------------------------------
-
 # Create a bot Locale
+# -----------------------------------------------------------------------------------------------------------------------
+
 response = client.create_bot_locale(
     botId=created_bot_response['botId'],
     botVersion='DRAFT',
@@ -87,13 +88,11 @@ print(response)
 
 # -----------------------------------------------------------------------------------------------------------------------
 
-
-# -----------------------------------------------------------------------------------------------------------------------
 # Create intent
-
+# The brackets in this are quite frankly a headache - can use a json editor but doesnt massively help tbh
 
 response = client.create_intent(
-    intentName='PYTHON_SETUP2',
+    intentName='PYTHON_SETUP',
     description='Helps users find out how to setup Python',
     sampleUtterances=[
         {
@@ -137,8 +136,6 @@ response = client.create_intent(
 
 print(response)
 # -----------------------------------------------------------------------------------------------------------------------
-
-
 # Create a version? Just using DRAFT for now
 
 # You can get the botID out of the previous response
