@@ -11,6 +11,7 @@ import uuid
 # str(uuid.uuid4())
 # uuid.uuid4().hex
 # Just creating unique ID number for session ID, pretty sure it can be anything but used this anyway
+# LocaleId here: https://docs.aws.amazon.com/lex/latest/dg/how-it-works-language.html
 
 # Setup
 botId = 'MYCSXHKEKY'
@@ -137,7 +138,8 @@ response = client.create_intent(
     #botId=created_bot_response['botId'],
     botId='KA6ARFQ5CT',
     botVersion='DRAFT',
-    localeId='en_GB'
+    localeId='en_GB',
+
 
 )
 
@@ -226,6 +228,60 @@ for i in df['intentname'].unique():
 client.describe_bot(
     botId='KA6ARFQ5CT'
 )
+
+# -----------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------------
+# Alternative method (have not finished)
+
+import json
+
+with open('LexIntent_Template.json') as f:
+    LexIntent_Template = f.read()
+
+with open('bot.json') as f:
+        LexBot_Template = f.read()
+
+with open("LexIntent_Template.json") as fh1:
+    data = json.load(fh1)
+    data_int = data['resource']
+fh1.close()
+
+
+# You can use start_import to import a bot from a zip that you uploaded to S3 bucket and use a mergeStrategy which can append onto an existing boy
+# i.e. updating it
+
+filename = "LexbotImport.zip"
+with open(filename, 'rb') as binary_file:
+    binary_file_data = binary_file.read()
+
+response = client.start_import(
+    payload=binary_file_data ,
+    resourceType='BOT' ,
+    mergeStrategy='Append'
+)
+
+# -----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # -----------------------------------------------------------------------------------------------------------------------
 # Not necessarily needed including for completeness
