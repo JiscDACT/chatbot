@@ -1,0 +1,4 @@
+/venv/
+/source data/
+/output/
+AWS_keys.py
