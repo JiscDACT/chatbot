@@ -6,7 +6,6 @@
 # -----------------------------------------------------------------------------------------------------------------------
 # Runtime API
 # -----------------------------------------------------------------------------------------------------------------------
-
 import uuid
 
 # str(uuid.uuid4())
@@ -96,6 +95,7 @@ print(response)
 
 # Create intent
 # The brackets in this are quite frankly a headache - can use a json editor but doesnt massively help tbh
+# Shows example of adding one an intent, below is a function that adds multiple at once
 
 response = client.create_intent(
     intentName='PYTHON_SETUP',
@@ -143,15 +143,17 @@ response = client.create_intent(
 
 print(response)
 # -----------------------------------------------------------------------------------------------------------------------
-# Write a function that can add a load of intents at once, skip ones that are already on there but add new ones
+# Write a function that can add a load of intents at once, add functionality to skip ones that are already on there but add new ones
 # this is what we want to update each time
 
 import pandas as pd
 
+# Data needs to be in long format
 df = pd.read_csv("intents_long.csv")
 
 
 # Here is a function that could work for it
+# Can put this in a functions library and use as a wrapper to make it more user friendly, also user interface
 
 def create_intent_jen(intentname,
                       desc,
@@ -190,9 +192,9 @@ def create_intent_jen(intentname,
     return response
 
 
+# -----------------------------------------------------------------------------------------------------------------------
 
 # Adding Intents and utterances from the dataset
-# Attempt for long format data
 
 
 for i in df['intentname'].unique():
@@ -214,7 +216,7 @@ for i in df['intentname'].unique():
                                  fulfillment=fulfillment)
 
     if response['ResponseMetadata']['HTTPStatusCode'] != 200:
-        print("Intent Creation failed!!!\n", response)
+        print("Intent creation failed :(\n", response)
         break
 
 # -----------------------------------------------------------------------------------------------------------------------
@@ -226,8 +228,8 @@ client.describe_bot(
 )
 
 # -----------------------------------------------------------------------------------------------------------------------
+# Not necessarily needed including for completeness
 # Create a version? Just using DRAFT for now
-
 # You can get the botID out of the previous response
 
 response = client.create_bot_version(
@@ -244,7 +246,6 @@ print(response['botId'])
 
 # -----------------------------------------------------------------------------------------------------------------------
 # Create an alias
-
 
 # Resources
 # https://towardsaws.com/getting-started-with-aws-lex-using-a-datafile-and-aws-python-sdk-64517fd751b7
